@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Мой блог</title>
+    <link rel="stylesheet" type="text/css" href="http://yandex.st/highlightjs/7.3/styles/googlecode.min.css" />
+    <script type="text/javascript" src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+    <link href="http://dudev.ru/css/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+	<a href="/">Мой блог</a>
+</header>
+<div id="page">
+	<div id="content">
+		{% block content %}{% endblock %}
+	</div>
+	<div id="sidebar">
+		<nav>
+			<h4>Меню</h4>
+			<ul>
+			    <li><a href="/">Блог</a></li>
+                <li><a href="/about-me.html">Обо мне</a></li>
+                <li><a href="/offers.html">Услуги</a></li>
+                <li><a href="/contacts.html">Контакты</a></li>
+            </ul>
+		</nav>
+		<nav>
+			<h4>Категории</h4>
+			<ul>
+			    {% for option in categories %}
+    			    <li><a href="/blog?cat={{ option.id }}">{{ option.name }}</a></li>
+                {% endfor %}
+            </ul>
+		</nav>
+</div>
+<footer>
+	<p>&copy;&nbsp;2008 -  <?= date('Y') ?>&nbsp;Евгений Русанов</p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<h1>{{ post.title }}</h1>
+<div class="post">
+    {{ post.content|safe }}
+    <p>&copy; <a href="/">Русанов Евгений</a></p>
+	<br clear="both">
+	<section class="meta">
+		<p>{{ post.public_time }} | <i>Раздел: <a href="/blog?cat={{ option.category.id }}">{{ option.category.name }}</a></i></p>
+	</section>
+</div>
+<div id="comments">
+	<h2>Комментарии</h2>
+	{% for option in posts %}
+        <section class="meta">
+	    <p>{{ option.author }}</p>
+        </section>
+        <p class="comment">{{ option.content }}</p>
+    {% endfor %}
+    <h3>Добавить комментарий</h3>
+    <div class="form">
+    {% if report != 1 %}
+        <form id="comment-form" action="/blog/{{ post.id }}" method="post">
+            <div id="comment-form_es_" class="errorSummary" {% if report != 2 %} style="display:none" {% andif %}><p>Необходимо исправить ошибки</p></div>	
+            <label for="Comment_author" class="required">Имя <span class="required">*</span></label>
+	        <input name="author" id="Comment_author" type="text" />	
+
+	        <label for="Comment_email" class="required">Эл. почта <span class="required">*</span></label>
+	        <input name="email" id="Comment_email" type="text" />
+	                
+	        <label for="Comment_content" class="required">Комментарий <span class="required">*</span></label>
+	        <textarea name="content" id="Comment_content"></textarea>
+	                
+	        <input class="button" type="submit" name="yt0" value="Отправить" />
+        </form>
+    {% endif %}
+    {% if report == 1 %}
+        Комментарий добавлен
+    {% endif %}
+    </div><!-- form -->
+</div>
+{% endblock %}
+
+{% block categories %}
+{{ categories }}
+{% endblock %}

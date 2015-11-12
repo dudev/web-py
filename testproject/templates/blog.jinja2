@@ -1,0 +1,20 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<h1>Записи</h1>
+<div class="items">
+    {% for option in posts %}
+        <div class="post">
+	        <a class="h1" href="/blog/{{ option.id }}">{{ option.title }}</a>    
+	        <a href="/blog/{{ option.id }}"><img align="left" width="200" src="http://dudev.ru/images/{{ option.id }}-min.jpg" alt="" /></a>	
+	        {{ option.content|striptags|truncate }}
+	        <section class="meta">
+		        <p>{{ option.public_time }} | <i>Раздел: <a href="/blog?cat={{ option.category.id }}">{{ option.category.name }}</a></i></p>
+	        </section>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block categories %}
+{{ categories }}
+{% endblock %}

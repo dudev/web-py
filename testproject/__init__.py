@@ -30,7 +30,7 @@ def main(global_config, **settings):
     config.include('pyramid_sacrud', route_prefix='admin')
     settings = config.registry.settings
     settings['pyramid_sacrud.models'] = (
-        ('Tables', [Good,Category,Manufacturer]),)
+        ('Tables', [Post,Category,Page,Comment]),)
     config.scan()
     return config.make_wsgi_app()
 

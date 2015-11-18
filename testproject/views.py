@@ -33,7 +33,7 @@ def post_comment(request):
         author = request.POST['author']
         email = request.POST['email']
         content = request.POST['content']
-        if not (subject and email and body):
+        if not (author and email and content):
             return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
         comment = Comment(
             content = content,

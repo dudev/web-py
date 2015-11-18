@@ -66,7 +66,7 @@ def blog_view(request):
 @view_config(route_name='page', renderer='/root/web-py/testproject/templates/page.jinja2')
 def page_view(request):
     page_nick = request.matchdict['nick']
-    page = DBSession.query(Page).filter_by(id=page_id).first()
+    page = DBSession.query(Page).filter_by(nick=page_nick).first()
     categories = DBSession.query(Category).all()
     if not post:
         return Response('Not found')

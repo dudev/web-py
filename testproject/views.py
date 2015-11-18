@@ -21,7 +21,7 @@ def post_view(request):
     categories = DBSession.query(Category).all()
     if not post:
         return Response('Not found')
-    return {'post' : post, 'comments' = comments, 'categories' = categories, 'report': 0}
+    return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 0}
 
 @view_config(route_name='post', request_method='POST', renderer='templates/post.jinja2')
 def post_comment(request):
@@ -44,7 +44,7 @@ def post_comment(request):
     
     comments = DBSession.query(Comment).filter_by(post_id=post_id).all()
     categories = DBSession.query(Category).all()
-    return {'post' : post, 'comments' = comments, 'categories' = categories, 'report': 1}
+    return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 1}
 
 
 @view_config(route_name='blog', renderer='templates/blog.jinja2')
@@ -69,4 +69,4 @@ def page_view(request):
     categories = DBSession.query(Category).all()
     if not post:
         return Response('Not found')
-    return {'page' : page, 'categories' = categories}
+    return {'page' : page, 'categories' : categories}

@@ -26,7 +26,7 @@ Base = declarative_base()
 class Category(Base):
     __tablename__ = 'category'
     id = Column(Integer, primary_key=True)
-    name = Column(String(255), nullable=False)
+    name = Column(Unicode(255), nullable=False)
     post = relationship("Post")
 
 
@@ -34,8 +34,8 @@ class Comment(Base):
     __tablename__ = 'comment'
     id = Column(Integer, primary_key=True)
     content = Column(Text, nullable=False)
-    email = Column(String(255))
-    author = Column(String(255), nullable=False)
+    email = Column(Unicode(255))
+    author = Column(Unicode(255), nullable=False)
     create_time = Column(DateTime, default=func.now(), nullable=False)
     post_id = Column(Integer, ForeignKey('post.id'), nullable=False)
 
@@ -43,14 +43,14 @@ class Comment(Base):
 class Page(Base):
     __tablename__ = 'page'
     id = Column(Integer, primary_key=True)
-    title = Column(String(255), nullable=False)
-    nick = Column(String(255), unique=True, nullable=False)
+    title = Column(Unicode(255), nullable=False)
+    nick = Column(Unicode(255), unique=True, nullable=False)
     content = Column(Text, nullable=False)
 
 class Post(Base):
     __tablename__ = 'post'
     id = Column(Integer, primary_key=True)
-    title = Column(String(255), nullable=False)
+    title = Column(Unicode(255), nullable=False)
     content = Column(Text, nullable=False)
     public_time = Column(DateTime, default=func.now(), nullable=False)
     category_id = Column(Integer, ForeignKey('category.id'), nullable=False)

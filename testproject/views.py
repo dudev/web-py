@@ -68,6 +68,6 @@ def page_view(request):
     page_nick = request.matchdict['nick']
     page = DBSession.query(Page).filter_by(nick=page_nick).first()
     categories = DBSession.query(Category).all()
-    if not post:
+    if not page:
         return Response('Not found')
     return {'page' : page, 'categories' : categories}

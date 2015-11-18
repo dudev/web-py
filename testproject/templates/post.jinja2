@@ -15,7 +15,7 @@
         <section class="meta">
 	    <p>{{ option.author }}</p>
         </section>
-        <p class="comment">{{ option.content }}</p>
+        <p class="comment">{{ option.content|safe }}</p>
     {% endfor %}
     <h3>Добавить комментарий</h3>
     <div class="form">

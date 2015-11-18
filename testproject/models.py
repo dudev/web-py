@@ -7,6 +7,7 @@ from sqlalchemy import (
     ForeignKey,
     String,
     DateTime,
+    Unicode,
     func
     )
 

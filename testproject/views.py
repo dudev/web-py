@@ -32,7 +32,7 @@ def post_comment(request):
         email = request.POST['email']
         content = request.POST['content']
         if not (subject and email and body):
-            return {'report': 2}
+            return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
         comment = Comment(
             content = content,
             email = email,
@@ -40,7 +40,7 @@ def post_comment(request):
             post_id = post_id
         )
     except Exception as ex:
-        return {'report': 2}
+        return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
     
     comments = DBSession.query(Comment).filter_by(post_id=post_id).all()
     categories = DBSession.query(Category).all()

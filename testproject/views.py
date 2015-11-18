@@ -34,9 +34,9 @@ def post_comment(request):
         if not (subject and email and body):
             return {'report': 2}
         comment = Comment(
-            content = content
-            email = email
-            author = author
+            content = content,
+            email = email,
+            author = author,
             post_id = post_id
         )
     except Exception as ex:

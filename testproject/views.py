@@ -30,9 +30,9 @@ def post_comment(request):
     categories = DBSession.query(Category).all()
     comments = DBSession.query(Comment).filter_by(post_id=post_id).all()
     try:
-        author = request.POST['author']
-        email = request.POST['email']
-        content = request.POST['content']
+        author = request.POST['author'].decode('utf8')
+        email = request.POST['email'].decode('utf8')
+        content = request.POST['content'].decode('utf8')
         if not (author and email and content):
             return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
         comment = Comment(

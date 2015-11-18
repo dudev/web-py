@@ -27,6 +27,8 @@ def post_view(request):
 def post_comment(request):
     post_id = request.matchdict['id']
     post = DBSession.query(Post).filter_by(id=post_id).first()
+    categories = DBSession.query(Category).all()
+    comments = DBSession.query(Comment).filter_by(post_id=post_id).all()
     try:
         author = request.POST['author']
         email = request.POST['email']
@@ -43,7 +45,6 @@ def post_comment(request):
         return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
     
     comments = DBSession.query(Comment).filter_by(post_id=post_id).all()
-    categories = DBSession.query(Category).all()
     return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 1}
 
 

@@ -43,7 +43,7 @@ def post_comment(request):
         )
         DBSession.add(comment)
     except Exception as ex:
-        return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
+        return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 3}
     
     comments = DBSession.query(Comment).filter_by(post_id=post_id).all()
     return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 1}

@@ -41,6 +41,7 @@ def post_comment(request):
             author = author,
             post_id = post_id
         )
+        DBSession.add(comment)
     except Exception as ex:
         return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
     

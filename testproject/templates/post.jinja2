@@ -22,13 +22,13 @@
     {% if report != 1 %}
         <form id="comment-form" action="/blog/{{ post.id }}" method="post">
             <div id="comment-form_es_" class="errorSummary" {% if report != 2 and report != 3 %} style="display:none" {% endif %}><p>Необходимо исправить ошибки ({{ report }})</p></div>	
-            <label for="Comment_author" class="required">Имя <span class="required">*</span></label>
+            <label for="Comment_author" class="required">Имя (англ.) <span class="required">*</span></label>
 	        <input name="author" id="Comment_author" type="text" />	
 
 	        <label for="Comment_email" class="required">Эл. почта <span class="required">*</span></label>
 	        <input name="email" id="Comment_email" type="text" />
 	                
-	        <label for="Comment_content" class="required">Комментарий <span class="required">*</span></label>
+	        <label for="Comment_content" class="required">Комментарий (англ.) <span class="required">*</span></label>
 	        <textarea name="content" id="Comment_content"></textarea>
 	                
 	        <input class="button" type="submit" name="yt0" value="Отправить" />

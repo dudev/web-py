@@ -36,9 +36,9 @@ def post_comment(request):
         if not (author and email and content):
             return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
         comment = Comment(
-            content = content.decode('utf8'),
-            email = email.decode('utf8'),
-            author = author.decode('utf8'),
+            content = content.encode('utf8'),
+            email = email.encode('utf8'),
+            author = author.encode('utf8'),
             post_id = post_id
         )
         DBSession.add(comment)

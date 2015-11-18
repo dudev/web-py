@@ -29,7 +29,7 @@
 			<h4>Категории</h4>
 			<ul>
 			    {% for option in categories %}
-    			    <li><a href="/blog?cat={{ option.id }}">{{ option.name }}</a></li>
+    			    <li><a href="/?cat={{ option.id }}">{{ option.name }}</a></li>
                 {% endfor %}
             </ul>
 		</nav>

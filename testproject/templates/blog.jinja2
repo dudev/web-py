@@ -8,7 +8,7 @@
 	        <a href="/blog/{{ option.id }}"><img align="left" width="200" src="http://dudev.ru/images/{{ option.id }}-min.jpg" alt="" /></a>	
 	        {{ option.content|striptags|truncate }}
 	        <section class="meta">
-		        <p>{{ option.public_time }} | <i>Раздел: <a href="/blog?cat={{ option.category.id }}">{{ option.category.name }}</a></i></p>
+		        <p>{{ option.public_time }} | <i>Раздел: <a href="/?cat={{ option.category.id }}">{{ option.category.name }}</a></i></p>
 	        </section>
         </div>
     {% endfor %}

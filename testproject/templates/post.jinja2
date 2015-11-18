@@ -21,7 +21,7 @@
     <div class="form">
     {% if report != 1 %}
         <form id="comment-form" action="/blog/{{ post.id }}" method="post">
-            <div id="comment-form_es_" class="errorSummary" {% if report != 2 %} style="display:none" {% endif %}><p>Необходимо исправить ошибки ({{ report }})</p></div>	
+            <div id="comment-form_es_" class="errorSummary" {% if report != 2 and report != 3 %} style="display:none" {% endif %}><p>Необходимо исправить ошибки ({{ report }})</p></div>	
             <label for="Comment_author" class="required">Имя <span class="required">*</span></label>
 	        <input name="author" id="Comment_author" type="text" />	
 

@@ -28,13 +28,12 @@ def post_comment(request):
     post_id = request.matchdict['id']
     post = DBSession.query(Post).filter_by(id=post_id).first()
     categories = DBSession.query(Category).all()
-    comments = DBSession.query(Comment).filter_by(post_id=post_id).all()
     try:
         author = request.POST['author']
         email = request.POST['email']
         content = request.POST['content']
         if not (author and email and content):
-            return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 2}
+            return {'post' : post, 'categories' : categories, 'report': 2}
         comment = Comment(
             content = content,
             email = email,
@@ -44,10 +43,9 @@ def post_comment(request):
         DBSession.add(comment)
     except Exception as ex:
         print ex
-        return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 3}
+        return {'post' : post, 'categories' : categories, 'report': 3}
     
-    comments = DBSession.query(Comment).filter_by(post_id=post_id).all()
-    return {'post' : post, 'comments' : comments, 'categories' : categories, 'report': 1}
+    return {'post' : post, 'categories' : categories, 'report': 1}
 
 
 @view_config(route_name='blog', renderer='/root/web-py/testproject/templates/blog.jinja2')

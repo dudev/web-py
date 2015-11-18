@@ -8,6 +8,7 @@ from sqlalchemy import (
     String,
     DateTime,
     Unicode,
+    UnicodeText,
     func
     )
 
@@ -34,7 +35,7 @@ class Category(Base):
 class Comment(Base):
     __tablename__ = 'comment'
     id = Column(Integer, primary_key=True)
-    content = Column(Text, nullable=False)
+    content = Column(UnicodeText, nullable=False)
     email = Column(Unicode(255))
     author = Column(Unicode(255), nullable=False)
     create_time = Column(DateTime, default=func.now(), nullable=False)
@@ -46,13 +47,13 @@ class Page(Base):
     id = Column(Integer, primary_key=True)
     title = Column(Unicode(255), nullable=False)
     nick = Column(Unicode(255), unique=True, nullable=False)
-    content = Column(Text, nullable=False)
+    content = Column(UnicodeText, nullable=False)
 
 class Post(Base):
     __tablename__ = 'post'
     id = Column(Integer, primary_key=True)
     title = Column(Unicode(255), nullable=False)
-    content = Column(Text, nullable=False)
+    content = Column(UnicodeText, nullable=False)
     public_time = Column(DateTime, default=func.now(), nullable=False)
     category_id = Column(Integer, ForeignKey('category.id'), nullable=False)
     comment = relationship("Comment", backref="post")

@@ -84,12 +84,12 @@ def page_view(request):
 
 @view_config(route_name='login', request_method='GET', renderer='/root/web-py/testproject/templates/login.jinja2')
 @forbidden_view_config(renderer='/root/web-py/testproject/templates/login.jinja2')
-def login(request):
+def login_get(request):
     categories = DBSession.query(Category).all()
     return {'login': '', 'categories' : categories}
 
 @view_config(route_name='login', request_method='POST', renderer='/root/web-py/testproject/templates/login.jinja2')
-def login(request):
+def login_post(request):
     login = ''
     password = ''
     if (login and password):

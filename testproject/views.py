@@ -100,10 +100,10 @@ def login_post(request):
         password = request.params['password']
         if USERS.get(login) == password:
             headers = remember(request, login)
-            return HTTPFound(location = '/admin',
+            return HTTPFound(location = '/admin/',
                              headers = headers)
     categories = DBSession.query(Category).all()
-    return {'message': 1, 'login': login, 'categories' : categories }
+    return {'message': 2, 'login': login, 'categories' : categories }
 
 @view_config(route_name='logout')
 def logout(request):

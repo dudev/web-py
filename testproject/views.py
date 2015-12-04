@@ -92,7 +92,10 @@ def login_get(request):
 def login_post(request):
     login = ''
     password = ''
-    if (login and password):
+    if not (login and password):
+        categories = DBSession.query(Category).all()
+        return {'message': 1, 'login': login, 'categories' : categories }
+    else:
         login = request.params['login']
         password = request.params['password']
         if USERS.get(login) == password:

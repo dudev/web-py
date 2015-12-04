@@ -20,6 +20,11 @@ from sqlalchemy.orm import (
     relationship
     )
 
+from pyramid.security import (
+    Allow,
+    Everyone
+    )
+
 from zope.sqlalchemy import ZopeTransactionExtension
 
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
@@ -58,3 +63,9 @@ class Post(Base):
     category_id = Column(Integer, ForeignKey('category.id'), nullable=False)
     comment = relationship("Comment", backref="post")
     category = relationship("Category")
+
+class Accesses(object):
+    __acl__ = [ (Allow, 'group:editors', ('pyramid_sacrud_home', 'pyramid_sacrud_create', 'pyramid_sacrud_update', 'pyramid_sacrud_delete', 'pyramid_sacrud_list')),
+                (Allow, 'Everyone', 'view') ]
+    def __init__(self, request):
+        pass

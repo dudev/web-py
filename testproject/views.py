@@ -13,6 +13,23 @@ from .models import (
     Comment
     )
 
+from pyramid.httpexceptions import (
+    HTTPFound,
+    HTTPNotFound)
+
+from pyramid.view import (
+    view_config,
+    forbidden_view_config)
+
+from pyramid.security import (
+    remember,
+    forget)
+
+from .security import USERS
+
+import random
+import string
+
 @view_config(route_name='post', request_method='GET', renderer='/root/web-py/testproject/templates/post.jinja2')
 def post_view(request):
     post_id = request.matchdict['id']
@@ -71,3 +88,29 @@ def page_view(request):
     if not page:
         return Response('Not found')
     return {'page' : page, 'categories' : categories}
+
+@view_config(route_name='login', request_method='GET', renderer='templates/login.jinja2')
+@forbidden_view_config(renderer='templates/login.jinja2')
+def login(request):
+    categories = DBSession.query(Category).all()
+    return {'login': '', 'categories' : categories}
+
+@view_config(route_name='login', request_method='POST', renderer='templates/login.jinja2')
+def login(request):
+    login = ''
+    password = ''
+    if (login and password):
+        login = request.params['login']
+        password = request.params['password']
+        if USERS.get(login) == password:
+            headers = remember(request, login)
+            return HTTPFound(location = '/admin',
+                             headers = headers)
+    categories = DBSession.query(Category).all()
+    return {'message': 'Неверный логин или пароль', 'login': login, 'categories' : categories }
+
+@view_config(route_name='logout')
+def logout(request):
+    headers = forget(request)
+    return HTTPFound(location = '/',
+                     headers = headers)

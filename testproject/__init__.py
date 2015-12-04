@@ -36,6 +36,8 @@ def main(global_config, **settings):
     config.add_static_view('static', 'static', cache_max_age=3600)
     
     config.add_route('blog', '/')
+    config.add_route('login', '/login')
+    config.add_route('logout', '/logout')
     config.add_route('post', '/blog/{id}')
     config.add_route('page', '/page/{nick}')
     config.include('pyramid_sacrud', route_prefix='admin')

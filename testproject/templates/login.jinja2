@@ -4,7 +4,7 @@
 
 <div class="form">
 <form id="login-form" action="/login" method="post">
-<div class="errorSummary"><p>{{ message }}</p></div>
+<div class="errorSummary" {% if message != 1 %} style="display:none" {% endif %}><p>Неверный логин или пароль</p></div>
 	<label for="login" class="required">Логин <span class="required">*</span></label>	<input name="login" id="login" type="text" value="{{ login }}" />
 	<label for="password" class="required">Пароль <span class="required">*</span></label>	<input name="password" id="password" type="password" />
 	<input class="button" type="submit" value="Войти" />

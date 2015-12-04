@@ -86,7 +86,7 @@ def page_view(request):
 @forbidden_view_config(renderer='/root/web-py/testproject/templates/login.jinja2')
 def login_get(request):
     categories = DBSession.query(Category).all()
-    return {'login': '', 'categories' : categories}
+    return {'message': 0, 'login': '', 'categories' : categories}
 
 @view_config(route_name='login', request_method='POST', renderer='/root/web-py/testproject/templates/login.jinja2')
 def login_post(request):
@@ -100,7 +100,7 @@ def login_post(request):
             return HTTPFound(location = '/admin',
                              headers = headers)
     categories = DBSession.query(Category).all()
-    return {'message': 'Неверный логин или пароль', 'login': login, 'categories' : categories }
+    return {'message': 1, 'login': login, 'categories' : categories }
 
 @view_config(route_name='logout')
 def logout(request):
